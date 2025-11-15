@@ -62,7 +62,7 @@ export class DorothyOrb {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.2;
+    this.renderer.toneMappingExposure = 0.9;
 
     this.uniforms = {
       iridescence: { value: 0.7 },
@@ -140,9 +140,9 @@ export class DorothyOrb {
     this.composer.addPass(renderPass);
 
     const bloomEffect = new BloomEffect({
-      intensity: 1.5,
-      luminanceThreshold: 0.6,
-      luminanceSmoothing: 0.8,
+      intensity: 0.8,
+      luminanceThreshold: 0.4,
+      luminanceSmoothing: 0.7,
     });
     const bloomPass = new EffectPass(this.camera, bloomEffect);
     this.composer.addPass(bloomPass);

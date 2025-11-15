@@ -42,10 +42,10 @@ void main() {
   vec3 viewDir = normalize(vViewPosition);
   vec3 lightDir = normalize(lightPosition - vWorldPosition);
 
-  // Base color with warmth
+  // Base color with warmth - vibrant colors
   vec3 baseColor = mix(
-    vec3(0.8, 0.9, 1.0),  // Cool blue-white
-    vec3(1.0, 0.9, 0.7),  // Warm amber
+    vec3(0.2, 0.5, 1.0),  // Vivid blue
+    vec3(1.0, 0.4, 0.6),  // Warm coral/pink
     warmth
   );
 
@@ -65,22 +65,22 @@ void main() {
   // Iridescence
   vec3 irid = iridescenceEffect(normal, viewDir, iridescence);
 
-  // Rim lighting for depth
-  float rim = pow(1.0 - max(dot(normal, viewDir), 0.0), 3.0);
-  vec3 rimColor = vec3(0.5, 0.7, 1.0) * rim * 0.5;
+  // Rim lighting for depth - boosted
+  float rim = pow(1.0 - max(dot(normal, viewDir), 0.0), 2.5);
+  vec3 rimColor = vec3(0.3, 0.8, 1.0) * rim * 1.2;
 
   // Audio reactivity - pulse internal glow
   float audioPulse = audioLevel * 0.4;
   vec3 innerGlow = baseColor * (1.0 + audioPulse);
 
-  // Combine all lighting components
-  vec3 finalColor = baseColor * diffuse * 0.6;
-  finalColor += sss;
-  finalColor += irid;
+  // Combine all lighting components - boosted visibility
+  vec3 finalColor = baseColor * (0.4 + diffuse * 0.8);
+  finalColor += sss * 1.5;
+  finalColor += irid * 1.8;
   finalColor += rimColor;
-  finalColor += specular * vec3(1.0) * 0.3;
-  finalColor += innerGlow * (1.0 - diffuse) * 0.4;
-  finalColor += fresnel * vec3(1.0) * 0.2;
+  finalColor += specular * vec3(1.0) * 0.8;
+  finalColor += innerGlow * (1.0 - diffuse) * 0.6;
+  finalColor += fresnel * baseColor * 0.4;
 
   // Tone mapping
   finalColor = finalColor / (finalColor + vec3(1.0));
