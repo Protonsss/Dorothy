@@ -1,0 +1,41 @@
+.chart-svg {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  overflow: visible;
+}
+
+.chart-svg text {
+  fill: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.chart-svg .grid line {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1;
+}
+
+.chart-svg .grid path {
+  stroke: none;
+}
+
+.chart-svg .line {
+  filter: drop-shadow(0 0 8px rgba(26, 140, 255, 0.3));
+}
+
+.chart-svg .dot {
+  cursor: pointer;
+  transition: r 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chart-svg .dot:hover {
+  r: 7;
+}
+
+.chart-svg .bar {
+  cursor: pointer;
+  transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chart-svg .bar:hover {
+  opacity: 0.8;
+}
