@@ -23,6 +23,7 @@ export class DorothyOrb {
   private performanceMonitor: PerformanceMonitor;
   private animationFrameId: number | null;
   private clock: THREE.Clock;
+  private canvas: HTMLCanvasElement;
 
   private uniforms: {
     iridescence: { value: number };
@@ -44,10 +45,15 @@ export class DorothyOrb {
   };
 
   constructor(canvas: HTMLCanvasElement) {
+    this.canvas = canvas;
     this.scene = new THREE.Scene();
+
+    const width = canvas.parentElement?.clientWidth || 600;
+    const height = canvas.parentElement?.clientHeight || 600;
+
     this.camera = new THREE.PerspectiveCamera(
       50,
-      window.innerWidth / window.innerHeight,
+      width / height,
       0.1,
       1000
     );
@@ -59,7 +65,7 @@ export class DorothyOrb {
       antialias: true,
       powerPreference: 'high-performance',
     });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(width, height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 0.9;
@@ -209,8 +215,8 @@ export class DorothyOrb {
   }
 
   private handleResize(): void {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = this.canvas.parentElement?.clientWidth || 600;
+    const height = this.canvas.parentElement?.clientHeight || 600;
 
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
