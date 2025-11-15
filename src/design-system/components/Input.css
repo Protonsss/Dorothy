@@ -1,0 +1,122 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 2px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  color: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.04);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 44px;
+}
+
+.input-field:focus {
+  background: white;
+  border-color: #0070f3;
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+}
+
+.input-field::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.input-error .input-field {
+  border-color: #ef4444;
+}
+
+.input-error .input-field:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input-icon-left,
+.input-icon-right {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.input-icon-left {
+  left: 16px;
+}
+
+.input-icon-right {
+  right: 16px;
+}
+
+.input-field:has(+ .input-icon-left) {
+  padding-left: 48px;
+}
+
+.input-field:has(~ .input-icon-right) {
+  padding-right: 48px;
+}
+
+.input-error-message {
+  font-size: 13px;
+  color: #ef4444;
+  margin: 0;
+}
+
+.input-helper-text {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .input-label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .input-field {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .input-field:focus {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .input-field::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .input-icon-left,
+  .input-icon-right {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .input-helper-text {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}

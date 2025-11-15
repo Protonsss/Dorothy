@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+.nyc_output
+playwright-report
+test-results
+
+# Production
+dist
+build
+
+# Misc
+.DS_Store
+*.log
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# Editor
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Lighthouse
+.lighthouseci
+
+# Performance
+*.cpuprofile
+*.heapprofile

@@ -1,0 +1,27 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run preview",
+      "url": ["http://localhost:4173"],
+      "numberOfRuns": 3
+    },
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "first-contentful-paint": ["error", { "maxNumericValue": 800 }],
+        "interactive": ["error", { "maxNumericValue": 1500 }],
+        "speed-index": ["error", { "maxNumericValue": 1200 }],
+        "total-blocking-time": ["error", { "maxNumericValue": 150 }],
+        "largest-contentful-paint": ["error", { "maxNumericValue": 1200 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "performance": ["error", { "minScore": 0.95 }],
+        "accessibility": ["error", { "minScore": 1.0 }],
+        "best-practices": ["error", { "minScore": 0.95 }],
+        "seo": ["error", { "minScore": 0.95 }]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
