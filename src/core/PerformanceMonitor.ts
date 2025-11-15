@@ -1,4 +1,5 @@
 import { trace } from '@opentelemetry/api';
+import * as THREE from 'three';
 
 interface PerformanceMetrics {
   fps: number;

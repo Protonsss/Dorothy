@@ -33,7 +33,7 @@ export class AudioReactiveSystem {
       this.analyser.smoothingTimeConstant = 0.8;
 
       const bufferLength = this.analyser.frequencyBinCount;
-      this.dataArray = new Uint8Array(bufferLength);
+      this.dataArray = new Uint8Array(bufferLength) as Uint8Array;
 
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -57,7 +57,7 @@ export class AudioReactiveSystem {
       return this.frequencyData;
     }
 
-    this.analyser.getByteFrequencyData(this.dataArray);
+    this.analyser.getByteFrequencyData(this.dataArray as Uint8Array<ArrayBuffer>);
 
     const length = this.dataArray.length;
     const lowEnd = Math.floor(length * 0.1);
@@ -69,7 +69,7 @@ export class AudioReactiveSystem {
     let total = 0;
 
     for (let i = 0; i < length; i++) {
-      const value = this.dataArray[i] / 255;
+      const value = (this.dataArray[i] ?? 0) / 255;
       total += value;
 
       if (i < lowEnd) {
