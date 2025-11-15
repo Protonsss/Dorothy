@@ -6,6 +6,7 @@ import { ToastProvider } from './design-system/components/Toast';
 import { useCommandPalette, Command } from './design-system/components/CommandPalette';
 import './App.css';
 
+const Showcase = lazy(() => import('./pages/Showcase').then(m => ({ default: m.Showcase })));
 const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
 const SeniorInterface = lazy(() => import('./pages/SeniorInterface')
   .then(m => ({ default: m.SeniorInterface })));
@@ -59,7 +60,8 @@ export function App(): JSX.Element {
           <CommandPaletteComponent />
           <Suspense fallback={<LoadingScreen />}>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Showcase />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/senior" element={<SeniorInterface />} />
               <Route path="/dashboard" element={<CaregiverDashboard />} />
               <Route path="/scam-detection" element={<ScamDetection />} />
