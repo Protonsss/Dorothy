@@ -1,7 +1,5 @@
 import * as THREE from 'three';
-import { EffectComposer } from 'postprocessing';
-import { RenderPass } from 'postprocessing';
-import { UnrealBloomPass } from 'postprocessing';
+import { EffectComposer, RenderPass, BloomEffect, EffectPass } from 'postprocessing';
 import { AudioReactiveSystem } from './AudioReactiveSystem';
 import { FerrofluidSimulation } from './FerrofluidSimulation';
 import { PerformanceMonitor } from './PerformanceMonitor';
@@ -141,12 +139,12 @@ export class DorothyOrb {
     const renderPass = new RenderPass(this.scene, this.camera);
     this.composer.addPass(renderPass);
 
-    const bloomPass = new UnrealBloomPass(
-      new THREE.Vector2(window.innerWidth, window.innerHeight),
-      1.5,
-      0.8,
-      0.6
-    );
+    const bloomEffect = new BloomEffect({
+      intensity: 1.5,
+      luminanceThreshold: 0.6,
+      luminanceSmoothing: 0.8,
+    });
+    const bloomPass = new EffectPass(this.camera, bloomEffect);
     this.composer.addPass(bloomPass);
   }
 
@@ -165,7 +163,7 @@ export class DorothyOrb {
   }
 
   public updateState(
-    state: OrbVisualState,
+    _state: OrbVisualState,
     targetValues: {
       iridescence: number;
       subsurface: number;

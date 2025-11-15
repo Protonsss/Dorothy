@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { DorothyOrb } from '../core/DorothyOrb';
-import { useOrbStore, OrbVisualState } from '../core/OrbState';
+import { useOrbStore } from '../core/OrbState';
 
 interface VoiceOrbProps {
   className?: string;
